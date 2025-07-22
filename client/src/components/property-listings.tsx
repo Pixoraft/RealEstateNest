@@ -87,7 +87,7 @@ export default function PropertyListings({ searchFilters }: PropertyListingsProp
           <p className="text-xl text-gray-600">Handpicked premium properties from verified sellers</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300">
           {properties?.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}

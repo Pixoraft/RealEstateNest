@@ -56,7 +56,7 @@ export default function PropertyFilters({ onFiltersChange }: PropertyFiltersProp
   };
 
   return (
-    <section className="bg-white shadow-lg sticky top-20 z-40 py-6">
+    <section className="bg-white shadow-lg py-6">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <div className="space-y-2">
