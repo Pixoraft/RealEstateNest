@@ -216,7 +216,7 @@ export class MemStorage implements IStorage {
     }
 
     if (filters.propertyType && filters.propertyType !== "All Types") {
-      properties = properties.filter(p => p.propertyType === filters.propertyType.toLowerCase());
+      properties = properties.filter(p => p.propertyType === filters.propertyType?.toLowerCase());
     }
 
     if (filters.bhkConfig && filters.bhkConfig !== "Any BHK") {

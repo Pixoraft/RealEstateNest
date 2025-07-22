@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/header";
 import HeroSection from "@/components/hero-section";
 import PropertyFilters from "@/components/property-filters";
@@ -12,6 +12,14 @@ import Footer from "@/components/footer";
 import WhatsAppFloat from "@/components/whatsapp-float";
 
 export default function Home() {
+  const [searchFilters, setSearchFilters] = useState<{
+    minPrice?: number;
+    maxPrice?: number;
+    city?: string;
+    propertyType?: string;
+    bhkConfig?: string;
+  }>({});
+
   useEffect(() => {
     // Set page title and meta description for SEO
     document.title = "RealSpace - Find Your Dream Home in India | Premium Real Estate";
@@ -48,8 +56,8 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <PropertyFilters />
-        <PropertyListings />
+        <PropertyFilters onFiltersChange={setSearchFilters} />
+        <PropertyListings searchFilters={searchFilters} />
         <EMICalculator />
         <RealtorBio />
         <Testimonials />

@@ -15,6 +15,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Search properties with filters (must come before /:id route)
+  app.get("/api/properties/search", async (req, res) => {
+    try {
+      const filters = {
+        minPrice: req.query.minPrice ? parseFloat(req.query.minPrice as string) : undefined,
+        maxPrice: req.query.maxPrice ? parseFloat(req.query.maxPrice as string) : undefined,
+        city: req.query.city as string || undefined,
+        propertyType: req.query.propertyType as string || undefined,
+        bhkConfig: req.query.bhkConfig as string || undefined,
+      };
+
+      const properties = await storage.getPropertiesByFilters(filters);
+      res.json(properties);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to search properties" });
+    }
+  });
+
   // Get featured properties
   app.get("/api/properties/featured", async (req, res) => {
     try {
@@ -38,24 +56,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(property);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch property" });
-    }
-  });
-
-  // Search properties with filters
-  app.get("/api/properties/search", async (req, res) => {
-    try {
-      const filters = {
-        minPrice: req.query.minPrice ? parseFloat(req.query.minPrice as string) : undefined,
-        maxPrice: req.query.maxPrice ? parseFloat(req.query.maxPrice as string) : undefined,
-        city: req.query.city as string || undefined,
-        propertyType: req.query.propertyType as string || undefined,
-        bhkConfig: req.query.bhkConfig as string || undefined,
-      };
-
-      const properties = await storage.getPropertiesByFilters(filters);
-      res.json(properties);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to search properties" });
     }
   });
 

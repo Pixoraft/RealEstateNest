@@ -3,7 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from "lucide-react";
 
-export default function PropertyFilters() {
+interface PropertyFiltersProps {
+  onFiltersChange?: (filters: {
+    minPrice?: number;
+    maxPrice?: number;
+    city?: string;
+    propertyType?: string;
+    bhkConfig?: string;
+  }) => void;
+}
+
+export default function PropertyFilters({ onFiltersChange }: PropertyFiltersProps) {
   const [filters, setFilters] = useState({
     minPrice: "",
     maxPrice: "",
@@ -13,12 +23,36 @@ export default function PropertyFilters() {
   });
 
   const handleFilterChange = (key: string, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+    const newFilters = { ...filters, [key]: value };
+    setFilters(newFilters);
+    
+    // Convert to the format expected by the API
+    const apiFilters = {
+      minPrice: newFilters.minPrice && newFilters.minPrice !== "any" ? parseFloat(newFilters.minPrice) : undefined,
+      maxPrice: newFilters.maxPrice && newFilters.maxPrice !== "any" ? parseFloat(newFilters.maxPrice) : undefined,
+      city: newFilters.city && newFilters.city !== "all" ? newFilters.city : undefined,
+      propertyType: newFilters.propertyType && newFilters.propertyType !== "all" ? newFilters.propertyType : undefined,
+      bhkConfig: newFilters.bhkConfig && newFilters.bhkConfig !== "any" ? newFilters.bhkConfig : undefined,
+    };
+    
+    if (onFiltersChange) {
+      onFiltersChange(apiFilters);
+    }
   };
 
   const handleSearch = () => {
-    // TODO: Implement search functionality
-    console.log("Searching with filters:", filters);
+    // Trigger the same filter change to ensure search is executed
+    const apiFilters = {
+      minPrice: filters.minPrice && filters.minPrice !== "any" ? parseFloat(filters.minPrice) : undefined,
+      maxPrice: filters.maxPrice && filters.maxPrice !== "any" ? parseFloat(filters.maxPrice) : undefined,
+      city: filters.city && filters.city !== "all" ? filters.city : undefined,
+      propertyType: filters.propertyType && filters.propertyType !== "all" ? filters.propertyType : undefined,
+      bhkConfig: filters.bhkConfig && filters.bhkConfig !== "any" ? filters.bhkConfig : undefined,
+    };
+    
+    if (onFiltersChange) {
+      onFiltersChange(apiFilters);
+    }
   };
 
   return (

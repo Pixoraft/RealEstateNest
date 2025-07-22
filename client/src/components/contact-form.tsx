@@ -154,7 +154,7 @@ export default function ContactForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">Preferred Location</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                           <FormControl>
                             <SelectTrigger className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent">
                               <SelectValue placeholder="Select a city" />
@@ -180,7 +180,7 @@ export default function ContactForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">Budget Range</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                           <FormControl>
                             <SelectTrigger className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent">
                               <SelectValue placeholder="Select budget range" />
@@ -209,6 +209,7 @@ export default function ContactForm() {
                             rows={4}
                             placeholder="Tell us about your property requirements..." 
                             {...field}
+                            value={field.value || ""}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent"
                           />
                         </FormControl>

@@ -1,11 +1,38 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import PropertyCard from "./property-card";
 import { type Property } from "@shared/schema";
 
-export default function PropertyListings() {
+interface PropertyListingsProps {
+  searchFilters?: {
+    minPrice?: number;
+    maxPrice?: number;
+    city?: string;
+    propertyType?: string;
+    bhkConfig?: string;
+  };
+}
+
+export default function PropertyListings({ searchFilters }: PropertyListingsProps) {
+  const [showAll, setShowAll] = useState(false);
+  
+  // Build query params from search filters
+  const queryParams = new URLSearchParams();
+  if (searchFilters?.minPrice) queryParams.append('minPrice', searchFilters.minPrice.toString());
+  if (searchFilters?.maxPrice) queryParams.append('maxPrice', searchFilters.maxPrice.toString());
+  if (searchFilters?.city) queryParams.append('city', searchFilters.city);
+  if (searchFilters?.propertyType) queryParams.append('propertyType', searchFilters.propertyType);
+  if (searchFilters?.bhkConfig) queryParams.append('bhkConfig', searchFilters.bhkConfig);
+  
+  const hasFilters = Object.keys(searchFilters || {}).some(key => searchFilters?.[key as keyof typeof searchFilters] !== undefined);
+  
   const { data: properties, isLoading, error } = useQuery<Property[]>({
-    queryKey: ['/api/properties/featured'],
+    queryKey: hasFilters ? ['/api/properties/search', queryParams.toString()] : ['/api/properties/featured'],
+    queryFn: () => {
+      const url = hasFilters ? `/api/properties/search?${queryParams.toString()}` : '/api/properties/featured';
+      return fetch(url).then(res => res.json());
+    }
   });
 
   if (isLoading) {
@@ -67,8 +94,11 @@ export default function PropertyListings() {
         </div>
         
         <div className="text-center mt-12">
-          <Button className="bg-deep-blue text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-            View All Properties
+          <Button 
+            onClick={() => setShowAll(!showAll)}
+            className="bg-deep-blue text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            {showAll ? "Show Featured Only" : "View All Properties"}
           </Button>
         </div>
       </div>
