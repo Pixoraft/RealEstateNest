@@ -1,0 +1,52 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "title": "Luxury Sea View Apartment",
+      "description": "Premium 3BHK apartment with stunning sea views in Bandra West. Features modern amenities, spacious balconies, and world-class facilities.",
+      "location": "Bandra West, Mumbai",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "price": "32000000",
+      "propertyType": "apartment",
+      "bhkConfig": "3BHK",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "carpetArea": 1200,
+      "builtUpArea": 1450,
+      "imageUrl": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      "vastuCompliant": true,
+      "readyToMove": true,
+      "furnished": false,
+      "premium": true,
+      "newLaunch": false,
+      "luxury": true,
+      "contactNumber": "+919876543210",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Premium City Apartment",
+      "description": "Well-located 2BHK apartment in the heart of Delhi. Perfect for professionals with easy access to metro and commercial areas.",
+      "location": "Connaught Place, Delhi",
+      "city": "Delhi",
+      "state": "Delhi",
+      "price": "28000000",
+      "propertyType": "apartment",
+      "bhkConfig": "2BHK",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "carpetArea": 1000,
+      "builtUpArea": 1200,
+      "imageUrl": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      "vastuCompliant": false,
+      "readyToMove": true,
+      "furnished": false,
+      "premium": false,
+      "newLaunch": false,
+      "luxury": false,
+      "contactNumber": "+919876543210",
+      "featured": true
+    }
+  ]
+}
