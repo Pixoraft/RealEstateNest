@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Home, Menu, X } from "lucide-react";
+import { Link } from "wouter";
 import ListPropertyForm from "./list-property-form";
 
 export default function Header() {
@@ -43,12 +44,11 @@ export default function Header() {
             >
               Home
             </button>
-            <button 
-              onClick={() => scrollToSection('properties')}
-              className="text-gray-700 hover:text-saffron transition-colors font-medium"
-            >
-              Properties
-            </button>
+            <Link href="/properties">
+              <button className="text-gray-700 hover:text-saffron transition-colors font-medium">
+                Properties
+              </button>
+            </Link>
             <button 
               onClick={() => scrollToSection('about')}
               className="text-gray-700 hover:text-saffron transition-colors font-medium"
@@ -89,12 +89,11 @@ export default function Header() {
               >
                 Home
               </button>
-              <button 
-                onClick={() => scrollToSection('properties')}
-                className="text-gray-700 hover:text-saffron transition-colors font-medium text-left"
-              >
-                Properties
-              </button>
+              <Link href="/properties">
+                <button className="text-gray-700 hover:text-saffron transition-colors font-medium text-left">
+                  Properties
+                </button>
+              </Link>
               <button 
                 onClick={() => scrollToSection('about')}
                 className="text-gray-700 hover:text-saffron transition-colors font-medium text-left"

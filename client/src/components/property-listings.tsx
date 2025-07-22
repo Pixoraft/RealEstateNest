@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import PropertyCard from "./property-card";
 import { type Property } from "@shared/schema";
+import { Link } from "wouter";
 
 interface PropertyListingsProps {
   searchFilters?: {
@@ -94,12 +95,11 @@ export default function PropertyListings({ searchFilters }: PropertyListingsProp
         </div>
         
         <div className="text-center mt-12">
-          <Button 
-            onClick={() => setShowAll(!showAll)}
-            className="bg-deep-blue text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-          >
-            {showAll ? "Show Featured Only" : "View All Properties"}
-          </Button>
+          <Link href="/properties">
+            <Button className="bg-deep-blue text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+              View All Properties
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
