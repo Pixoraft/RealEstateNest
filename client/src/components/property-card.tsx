@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Bed, Bath, Square } from "lucide-react";
 import { type Property } from "@shared/schema";
 import { formatIndianPrice, openWhatsApp } from "@/lib/utils";
+import { Link } from "wouter";
 
 interface PropertyCardProps {
   property: Property;
@@ -28,16 +29,20 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
   return (
     <Card className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-      <img 
-        src={property.imageUrl} 
-        alt={property.title} 
-        className="w-full h-64 object-cover"
-        loading="lazy"
-      />
+      <Link href={`/property/${property.id}`}>
+        <img 
+          src={property.imageUrl} 
+          alt={property.title} 
+          className="w-full h-64 object-cover cursor-pointer"
+          loading="lazy"
+        />
+      </Link>
       
       <CardContent className="p-6">
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-xl font-semibold text-gray-900">{property.title}</h3>
+          <Link href={`/property/${property.id}`}>
+            <h3 className="text-xl font-semibold text-gray-900 hover:text-saffron cursor-pointer transition-colors">{property.title}</h3>
+          </Link>
           {badgeInfo && (
             <Badge className={`${badgeInfo.className} px-2 py-1 rounded-full text-xs font-medium`}>
               {badgeInfo.label}

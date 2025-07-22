@@ -70,7 +70,7 @@ export default function EMICalculator() {
                 </Button>
               </div>
               
-              <CardContent className="bg-white rounded-xl p-6 space-y-4">
+              <div className="bg-white rounded-xl p-6 space-y-4">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">EMI Breakdown</h3>
                 
                 <div className="flex justify-between items-center py-3 border-b border-gray-200">
@@ -93,7 +93,7 @@ export default function EMICalculator() {
                     ₹{emiData.totalAmount.toLocaleString('en-IN')}
                   </span>
                 </div>
-              </CardContent>
+              </div>
             </div>
           </Card>
         </div>

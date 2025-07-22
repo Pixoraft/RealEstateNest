@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Home, Menu, X } from "lucide-react";
+import ListPropertyForm from "./list-property-form";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isListPropertyOpen, setIsListPropertyOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +64,10 @@ export default function Header() {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button className="bg-saffron text-white px-6 py-2 rounded-lg hover:bg-saffron-dark transition-colors font-medium">
+            <Button 
+              onClick={() => setIsListPropertyOpen(true)}
+              className="bg-saffron text-white px-6 py-2 rounded-lg hover:bg-saffron-dark transition-colors font-medium"
+            >
               List Property
             </Button>
             <button 
@@ -106,6 +111,11 @@ export default function Header() {
           </div>
         )}
       </nav>
+      
+      <ListPropertyForm 
+        isOpen={isListPropertyOpen} 
+        onClose={() => setIsListPropertyOpen(false)} 
+      />
     </header>
   );
 }
