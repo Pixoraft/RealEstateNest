@@ -29,35 +29,35 @@ export default function EMICalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 mb-2">Loan Amount (₹)</Label>
+                  <Label className="text-sm font-medium text-gray-900 mb-2 block">Loan Amount (₹)</Label>
                   <Input 
                     type="number" 
                     value={loanAmount}
                     onChange={(e) => setLoanAmount(Number(e.target.value))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent" 
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent bg-white text-gray-900" 
                     placeholder="50,00,000"
                   />
                 </div>
                 
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 mb-2">Interest Rate (%)</Label>
+                  <Label className="text-sm font-medium text-gray-900 mb-2 block">Interest Rate (%)</Label>
                   <Input 
                     type="number" 
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent" 
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent bg-white text-gray-900" 
                     placeholder="8.5" 
                     step="0.1"
                   />
                 </div>
                 
                 <div>
-                  <Label className="text-sm font-medium text-gray-700 mb-2">Loan Tenure (Years)</Label>
+                  <Label className="text-sm font-medium text-gray-900 mb-2 block">Loan Tenure (Years)</Label>
                   <Input 
                     type="number" 
                     value={loanTenure}
                     onChange={(e) => setLoanTenure(Number(e.target.value))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent" 
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-transparent bg-white text-gray-900" 
                     placeholder="20"
                   />
                 </div>
