@@ -1,4 +1,4 @@
-# Real Estate Portal - Replit Project Guide
+# Real Estate Portal 
 
 ## Overview
 
